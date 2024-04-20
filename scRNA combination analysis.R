@@ -53,8 +53,10 @@ saveRDS(my_mtx_sum,'~/depict_dupensefliter_mtx.rds')
 
 # Combine Jurkat from DEPICT-seq and 10X
 
+
 Jurkat_data_matrix_sample = as.data.frame(Jurkat_data_matrix_sample)
-Jurkat_matrix = merge(Jurkat_data_matrix_sample,depict_mtx_sum,by = 0,all=T)
+expr_Data_40k = ReadDownSample(matrix = my_mtx_sum,size = 40000) %>% as.data.frame(.) 
+Jurkat_matrix = merge(Jurkat_data_matrix_sample,expr_Data_40k,by = 0,all=T)
 row.names(Total_matrix) = Total_matrix[,1]
 Total_matrix = Total_matrix[,-1]
 dataan <-  as(as.matrix(Total_matrix), "dgCMatrix")
